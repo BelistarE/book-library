@@ -1,3 +1,5 @@
+@import url('reset.css');
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
 
 .material-symbols-outlined {
 
@@ -10,4 +12,49 @@
 
 .material-symbols-outlined:hover{
     cursor: pointer;
+}
+
+.container{
+    display: grid;
+    grid-template-rows: 1fr 6fr;
+    height: 100vh;
+}
+
+.header {
+    background-color: #b76047;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Gloria Hallelujah"; 
+}
+.header > img {
+    filter: drop-shadow(0 0 5px #6c3a19);
+}
+h1{
+    font-size: 60px;
+}
+.books{
+    background-image: url('OIU5X50.jpg'); /* URL of your tile image */
+    background-repeat: repeat; /* Repeat both horizontally and vertically */
+    background-position: 20px 25px; 
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    overflow-y: auto;
+    gap: 30px;
+}
+.book{
+    background-color: white;
+    position: relative;
+    padding-top: 100%; /* Creates a 1:1 aspect ratio (square) */
+    overflow: hidden;
+}
+.book > * {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.add-new{
+    background-color: white;
+    grid-area: 1 1 2 2;
 }
