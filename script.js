@@ -24,6 +24,14 @@ let newBookButton = document.querySelector(".add-new");
 function addBookToLibrary(title, author, pages, read, rating) {
     let newBook = new Book(title, author, pages, read, rating);
     myLibrary.push(newBook);
+
+    let starHTML = '';
+    for (let i = 0; i < 5; i++) {
+        if (i < (5 - rating)) { // Adjust rating based on flipped value
+            starHTML += '&#x2B50;'; // Filled star
+        }
+    }
+
     let latestBookAdded = document.querySelector(".books .book:nth-child(3)")
     newBookBoard.setAttribute("style", "display:none;");
     console.log(latestBookAdded);
@@ -32,9 +40,7 @@ function addBookToLibrary(title, author, pages, read, rating) {
         <div class = "book">
             <div class = "title">${title}</div>
             <div class = "author">${author}</div>
-            <div class="rating">
-                    &#x2B50;&#x2B50;&#x2B50;
-            </div>
+            <div class="rating">${starHTML}</div>
             <div class = "pages">${pages}</div>
             <p class="read">Read</p>
         </div>
@@ -48,18 +54,63 @@ function addBookToLibrary(title, author, pages, read, rating) {
 });
 
 newBookSubmitButton.addEventListener("click", (e) => {
-  let name = document.getElementById("new-book-title").value;
-  let author = document.getElementById("new-book-author").value;
-  let pages = document.getElementById("new-book-pages").value;
-  if (!name || !author || !pages) {
+    e.preventDefault(); // Prevent the form from submitting by default
+    
+    let nameField = document.getElementById("new-book-title");
+    let authorField = document.getElementById("new-book-author");
+    let pagesField = document.getElementById("new-book-pages");
+    let read = document.getElementById("read").checked;
+    let selectedRatingElement = document.querySelector('input[name="rating"]:checked');
+    let selectedRating = selectedRatingElement ? selectedRatingElement.value : null;
+    
+    let isValid = true;
+  
+    // Check and highlight missing fields
+    if (!nameField.value) {
+      nameField.classList.add('input-error');
+      isValid = false;
+    } else {
+      nameField.classList.remove('input-error');
+    }
+  
+    if (!authorField.value) {
+      authorField.classList.add('input-error');
+      isValid = false;
+    } else {
+      authorField.classList.remove('input-error');
+    }
+  
+    if (!pagesField.value) {
+      pagesField.classList.add('input-error');
+      isValid = false;
+    } else {
+      pagesField.classList.remove('input-error');
+    }
+  
+    if (!selectedRating) {
+      document.querySelectorAll('input[name="rating"]').forEach(radio => radio.classList.add('input-error'));
+      isValid = false;
+    } else {
+      document.querySelectorAll('input[name="rating"]').forEach(radio => radio.classList.remove('input-error'));
+    }
+  
+    // If any field is missing, do not proceed
+    if (!isValid) {
+      console.log("Please fill out all required fields.");
       return;
-  }
-  e.preventDefault();
-  addBookToLibrary(name, author, pages, false);
-  document.getElementById("new-book-form").reset();
-});
-
-
+    }
+  
+    // Proceed if all fields are valid
+    addBookToLibrary(nameField.value, authorField.value, pagesField.value, read, selectedRating);
+    document.getElementById("new-book-form").reset();
+  
+    // Remove error highlighting after form is reset
+    nameField.classList.remove('input-error');
+    authorField.classList.remove('input-error');
+    pagesField.classList.remove('input-error');
+    document.querySelectorAll('input[name="rating"]').forEach(radio => radio.classList.remove('input-error'));
+  });
+  
 
 
   //below this is all styling
@@ -85,46 +136,44 @@ books.forEach(book => {
 //the rest if the code is for the stars, cant seem to get is working correctly
 const labels = document.querySelectorAll('.star-rating label');
 
-
 let selectedIndex = -1;
-
 
 labels.forEach((label, index) => {
     label.addEventListener('mouseenter', () => {
-        if (selectedIndex === -1 || index <= selectedIndex) {
-            darkenStars(index); 
-        }
+        lightenStars(index); 
     });
 
     label.addEventListener('mouseleave', () => {
         if (selectedIndex === -1 || index > selectedIndex) {
             resetStars(); 
         } else {
-            darkenStars(selectedIndex); 
+            lightenStars(selectedIndex); 
         }
     });
 
     label.addEventListener('click', () => {
-        
         selectedIndex = index;
+        lightenStars(index);
 
-        
-        darkenStars(index);
     });
 });
 
-
-function darkenStars(index) {
-    for (let i = 0; i <= index; i++) {
-        labels[i].style.filter = 'brightness(80%)';
+function lightenStars(index) {
+    for (let i = 0; i < labels.length; i++) {
+        if (i <= index) {
+            labels[i].style.filter = 'brightness(100%)'; 
+        } else {
+            labels[i].style.filter = 'brightness(50%)'; 
+        }
     }
 }
 
-
 function resetStars() {
-    labels.forEach((label, index) => {
-        label.style.filter = 'none'; 
-    });
+    for (let i = 0; i < labels.length; i++) {
+        if (i <= selectedIndex) {
+            labels[i].style.filter = 'brightness(100%)'; 
+        } else {
+            labels[i].style.filter = 'brightness(50%)'; 
+        }
+    }
 }
-
-

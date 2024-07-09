@@ -189,6 +189,7 @@ textarea::placeholder{
   align-self: center;
   width: 100%;
   overflow-wrap: break-word;
+  color: #6c3a19;
 }
 input {
   overflow-wrap: break-word;
@@ -196,6 +197,8 @@ input {
 #new-book-pages{
   height: 30px;
   width: 80%;
+  color: #6c3a19;
+  font-family: "Wittgenstein";
 
 }
 #new-book-form > *:nth-child(3){
@@ -227,6 +230,7 @@ input {
 
 .star-rating label {
   font-size: 30px; 
+  filter: brightness(50%);
   padding: 5px;
   cursor: pointer;
   display: inline-block;
@@ -247,5 +251,9 @@ input {
 }
 
 .star-rating label:hover {
-  filter: brightness(80%); 
+  color: #6c3a19;
+}
+
+.input-error {
+  border: 2px solid red !important;
 }
