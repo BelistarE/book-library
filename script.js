@@ -25,7 +25,7 @@ function addBookToLibrary(title, author, pages, read, rating) {
     let newBook = new Book(title, author, pages, read, rating);
     myLibrary.push(newBook);
     let latestBookAdded = document.querySelector(".books .book:nth-child(3)")
-    newBookBoard.setAttribute("style", "dispay:none;");
+    newBookBoard.setAttribute("style", "display:none;");
     console.log(latestBookAdded);
     latestBookAdded.insertAdjacentHTML("beforebegin",
       `

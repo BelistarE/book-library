@@ -195,7 +195,25 @@ input {
 }
 #new-book-pages{
   height: 30px;
-  width: 200px;
+  width: 80%;
+
+}
+#new-book-form > *:nth-child(3){
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+#new-book-form > *:nth-child(3) > * {
+  margin: 5px;
+}
+.read-align{
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  transform: translateY(-8px);
+}
+#read{
+  transform: scale(1.5);
 }
 .star-rating {
   position: relative;
