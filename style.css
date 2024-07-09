@@ -73,6 +73,7 @@ h1{
     box-sizing: border-box;
     justify-self: center; 
     align-self: start;
+    color: #6c3a19;
     
 }
 .book.hovered {

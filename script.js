@@ -35,7 +35,13 @@ function addBookToLibrary(title, author, pages, read, rating) {
     }
 
     let readHTML = '';
-
+    console.log(read);
+    if (read === true){
+        readHTML= '<p class="read">Read</p>'
+    } else {
+        readHTML = '';
+    }
+    console.log(readHTML);
     let latestBookAdded = document.querySelector(".books .book:nth-child(3)")
     newBookBoard.setAttribute("style", "display:none;");
     console.log(latestBookAdded);
@@ -46,8 +52,8 @@ function addBookToLibrary(title, author, pages, read, rating) {
             <div class = "title">${title}</div>
             <div class = "author">${author}</div>
             <div class="rating">${starHTML}</div>
-            <div class = "pages">${pages}</div>
-            <p class="read">Read</p>
+            <div class = "pages">${pages} pages</div>
+            ${readHTML}
         </div>
     `);
     starHTML= 0;
