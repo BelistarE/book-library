@@ -250,10 +250,14 @@ input {
   color: gold; 
 }
 
-.star-rating label:hover {
-  color: #6c3a19;
-}
 
 .input-error {
   border: 2px solid red !important;
+}
+input[type="radio"]:checked + label {
+  filter: brightness(100%);
+}
+
+.star-rating > label:first-child{
+  filter: brightness(100%);
 }

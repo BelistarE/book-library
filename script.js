@@ -25,16 +25,21 @@ function addBookToLibrary(title, author, pages, read, rating) {
     let newBook = new Book(title, author, pages, read, rating);
     myLibrary.push(newBook);
 
-    let starHTML = '';
+    let starHTML = '&#x2B50;';
+    let counter = 1;
     for (let i = 0; i < 5; i++) {
         if (i < (5 - rating)) { // Adjust rating based on flipped value
             starHTML += '&#x2B50;'; // Filled star
+            counter++;
         }
     }
+
+    let readHTML = '';
 
     let latestBookAdded = document.querySelector(".books .book:nth-child(3)")
     newBookBoard.setAttribute("style", "display:none;");
     console.log(latestBookAdded);
+    console.log(counter);
     latestBookAdded.insertAdjacentHTML("beforebegin",
       `
         <div class = "book">
@@ -45,8 +50,9 @@ function addBookToLibrary(title, author, pages, read, rating) {
             <p class="read">Read</p>
         </div>
     `);
+    starHTML= 0;
+    counter = 0;
     return newBook;
-
   }
 
   newBookButton.addEventListener("click", (e) => {
@@ -100,15 +106,17 @@ newBookSubmitButton.addEventListener("click", (e) => {
       return;
     }
   
-    // Proceed if all fields are valid
+    
     addBookToLibrary(nameField.value, authorField.value, pagesField.value, read, selectedRating);
+    console.log(`rating ${selectedRating} read ${read}`)
     document.getElementById("new-book-form").reset();
   
-    // Remove error highlighting after form is reset
+    
     nameField.classList.remove('input-error');
     authorField.classList.remove('input-error');
     pagesField.classList.remove('input-error');
     document.querySelectorAll('input[name="rating"]').forEach(radio => radio.classList.remove('input-error'));
+    clearStars()
   });
   
 
@@ -136,7 +144,7 @@ books.forEach(book => {
 //the rest if the code is for the stars, cant seem to get is working correctly
 const labels = document.querySelectorAll('.star-rating label');
 
-let selectedIndex = -1;
+let selectedIndex = 0;
 
 labels.forEach((label, index) => {
     label.addEventListener('mouseenter', () => {
@@ -154,6 +162,7 @@ labels.forEach((label, index) => {
     label.addEventListener('click', () => {
         selectedIndex = index;
         lightenStars(index);
+        console.log(`Star ${index + 1} clicked`);
 
     });
 });
@@ -175,5 +184,11 @@ function resetStars() {
         } else {
             labels[i].style.filter = 'brightness(50%)'; 
         }
+    }
+}
+function clearStars(){
+    for (let i = 1; i < labels.length; i++){
+        labels[i].style.filter = 'brightness(50%)';
+        selectedIndex= 0;
     }
 }
