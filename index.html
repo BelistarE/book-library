@@ -20,18 +20,36 @@
                 library_add
                 </span>
             </div>
+            <div id = "new-book-board" class="book" >
+                <form id = "new-book-form" action="#" method="post">
+                    <input type = "text" class = "title" id = "new-book-title" name = "new-book-title" placeholder="Book Title" required>
+                    <input type = "text" class = "author" id = "new-book-author" name = "new-book-author" placeholder="Book Author" required>
+                    <input type = "number" id = "new-book-pages" name = "new-book-pages" placeholder="Number of pages" required>
+                    <div class="star-rating">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">&#x2B50;</label>
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">&#x2B50;</label>
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">&#x2B50;</label>
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">&#x2B50;</label>
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">&#x2B50;</label>
+                    </div>
+                    <button type = "submit" id = "new-book-submit" class = "btn">+</button>
+                </form>
+            </div>
             <div class="book">
                 <p class="title">Lord of the Books</p>
                 <p class="author">Author P. Writer</p>
                 <div class="rating">
-                    &#x2B50;
+                    &#x2B50;&#x2B50;&#x2B50;
                 </div>
                 <p class="pages">100 pages</p>
                 <p class="read">Read</p>
             </div>
-            <div class="book"></div>
-            <div class="book"></div>
-            <div class="book"></div>
+            
         </div>
     </div>
     <script src="script.js"></script>

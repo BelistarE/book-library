@@ -33,13 +33,15 @@
 }
 h1{
     font-size: 60px;
+    filter: drop-shadow(0 0 5px #6c3a19);
 }
+
 .books{
     background-image: url('OIU5X50.jpg');
     background-repeat: repeat; /* Repeat both horizontally and vertically */
     background-position: 20px 25px; 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 16px; 
     padding: 30px;
     
@@ -69,11 +71,11 @@ h1{
     font-family: "Baskervville SC";
     transition: 200ms;
     box-sizing: border-box;
-    justify-self: center; /* Center the book horizontally */
-    align-self: start; /* Align the book to the top */
+    justify-self: center; 
+    align-self: start;
     
 }
-.book:not(:first-child):hover {
+.book.hovered {
   transform: translateY(-10px);
 }
 .add-new{
@@ -108,7 +110,11 @@ p{
   justify-content: center;
   text-align: center;
   font-size: 30px;
-  
+  text-shadow: 
+        1px 1px 0 #6c3a19, /* Bottom right */
+        -1px 1px 0 #6c3a19, /* Bottom left */
+        1px -1px 0 #6c3a19, /* Top right */
+        -1px -1px 0 #6c3a19; /* Top left */
 }
 .pages, .read{
   align-self: flex-end;
@@ -134,3 +140,37 @@ p{
     transform: translateY(30px);
 }
 
+#new-book-board{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.star-rating {
+  position: relative;
+  display: inline-block;
+  font-size: 0; 
+}
+
+.star-rating input {
+  display: none; 
+}
+
+.star-rating label {
+  font-size: 24px; 
+  cursor: pointer;
+  display: inline-block;
+  width: 30px; 
+  height: 30px; 
+  line-height: 30px;
+  text-align: center; 
+  transition: color 0.3s ease; 
+}
+
+.star-rating input:checked + label {
+  color: gold; 
+}
+
+.star-rating label:hover {
+  filter: brightness(80%); 
+}
