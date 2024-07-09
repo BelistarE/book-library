@@ -111,10 +111,10 @@ p{
   text-align: center;
   font-size: 30px;
   text-shadow: 
-        1px 1px 0 #6c3a19, /* Bottom right */
-        -1px 1px 0 #6c3a19, /* Bottom left */
-        1px -1px 0 #6c3a19, /* Top right */
-        -1px -1px 0 #6c3a19; /* Top left */
+        1px 1px 0 #6c3a19, 
+        -1px 1px 0 #6c3a19,
+        1px -1px 0 #6c3a19, 
+        -1px -1px 0 #6c3a19; 
 }
 .pages, .read{
   align-self: flex-end;
@@ -140,12 +140,63 @@ p{
     transform: translateY(30px);
 }
 
+
 #new-book-board{
   display: flex;
   flex-direction: column;
 }
-
-
+#new-book-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#new-book-form input{
+   max-width: 100%; 
+   padding: 20px;
+   box-sizing: border-box;
+   text-align: center;
+}
+textarea {
+  resize: none;
+  line-height: 1.2;
+  text-align: center;
+  vertical-align: middle;
+  color: #6c3a19;
+  width: 100%;
+}
+textarea::placeholder{
+  text-align: center;
+  vertical-align: middle;
+  line-height: inherit;
+}
+#new-book-submit:hover{
+  background-color: #6c3a19;
+  color: white;
+}
+.btn {
+  padding: 10px 50px;
+  border: 2px solid #6c3a19 ;
+  background: transparent;
+  font-size: 2rem;
+  display: inline-block;
+  color: #6c3a19;
+}
+#new-book-form > * {
+  margin: 5px;
+}
+#new-book-author{
+  height: 34px;
+  align-self: center;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+input {
+  overflow-wrap: break-word;
+}
+#new-book-pages{
+  height: 30px;
+  width: 200px;
+}
 .star-rating {
   position: relative;
   display: inline-block;
@@ -157,7 +208,8 @@ p{
 }
 
 .star-rating label {
-  font-size: 24px; 
+  font-size: 30px; 
+  padding: 5px;
   cursor: pointer;
   display: inline-block;
   width: 30px; 
@@ -165,6 +217,11 @@ p{
   line-height: 30px;
   text-align: center; 
   transition: color 0.3s ease; 
+  text-shadow: 
+        1px 1px 0 #6c3a19, 
+        -1px 1px 0 #6c3a19,
+        1px -1px 0 #6c3a19, 
+        -1px -1px 0 #6c3a19; 
 }
 
 .star-rating input:checked + label {
